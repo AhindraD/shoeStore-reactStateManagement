@@ -30,9 +30,11 @@ I made the following enhancements:
 
 
 
-# Old webpack version support
-[StackOverFlow](https://stackoverflow.com/a/69691525/21181834)
-
+# 🔰 Old webpack version support
+[StackOverFlow - Thread](https://stackoverflow.com/a/69691525/21181834) 
+- Add the following to node_modules\react-scripts\config\webpack.config.js
+```js
 const crypto = require("crypto");
 const crypto_orig_createHash = crypto.createHash;
 crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm);
+```
