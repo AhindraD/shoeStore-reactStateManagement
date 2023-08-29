@@ -27,3 +27,12 @@ I made the following enhancements:
 1. Deleted from src: index.css, logo.svg, serviceWorker.js, App.test.js
 1. Deleted from public: logo files, manifest.json, robots.txt
 1. Customized App.js and renamed to App.jsx
+
+
+
+# Old webpack version support
+[StackOverFlow](https://stackoverflow.com/a/69691525/21181834)
+
+const crypto = require("crypto");
+const crypto_orig_createHash = crypto.createHash;
+crypto.createHash = algorithm => crypto_orig_createHash(algorithm == "md4" ? "sha256" : algorithm);
