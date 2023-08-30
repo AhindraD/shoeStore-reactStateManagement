@@ -7,13 +7,17 @@ import { getProducts } from "./services/productService";
 export default function App() {
   const [size, setSize] = useState(undefined);
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState(null)
+
   useEffect(() => {
+    getProducts("shoes")
+      .then((resp) => setProducts(resp))
+      .catch((e) => setError(e));
     // async function fetchData() {
     //   const data = await getProducts("shoes");
     //   setProducts(data)
     // }
     // fetchData()
-    getProducts("shoes").then((resp) => setProducts(resp));
   }, [])
 
   function renderProduct(p) {
@@ -31,6 +35,8 @@ export default function App() {
   const filteredProducts = size ?
     products.filter((p) => p.skus.find((s) => s.size === Number(size)))
     : products;
+
+  if (error) throw error;
 
   return (
     <>
