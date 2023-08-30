@@ -1,4 +1,5 @@
-const baseUrl = process.env.REACT_APP_API_BASE_URL;
+const baseUrl = "http://localhost:3001/";
+// const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 export async function getProducts(category) {
   const response = await fetch(baseUrl + "products?category=" + category);

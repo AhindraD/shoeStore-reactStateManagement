@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
-import data from "./db.json";
+import { getProducts } from "./services/productService";
 
 export default function App() {
-  const products = data.products;
-  const [size, setSize] = useState(null);
+  const [size, setSize] = useState(undefined);
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    // async function fetchData() {
+    //   const data = await getProducts("shoes");
+    //   setProducts(data)
+    // }
+    // fetchData()
+    getProducts("shoes").then((resp) => setProducts(resp));
+  }, [])
 
   function renderProduct(p) {
     return (
