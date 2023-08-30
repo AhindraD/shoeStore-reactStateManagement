@@ -3,31 +3,12 @@ import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import { getProducts } from "./services/productService";
-import Spinner from "./Spinner"
+import Spinner from "./Spinner";
+import useFetch from "./services/useFetch";
 
 export default function App() {
   const [size, setSize] = useState(undefined);
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    // getProducts("shoes")
-    //   .then((resp) => setProducts(resp))
-    //   .catch((e) => setError(e))
-    //   .finally(() => setLoading(false))
-    async function fetchData() {
-      try {
-        const data = await getProducts("shoes");
-        setProducts(data)
-      } catch (e) {
-        setError(e)
-      } finally{
-        setLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
+  const { data: products, loading, error } = useFetch("products?category=shoes");
 
   function renderProduct(p) {
     return (
