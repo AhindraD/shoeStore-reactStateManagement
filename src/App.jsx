@@ -3,21 +3,30 @@ import "./App.css";
 import Footer from "./Footer";
 import Header from "./Header";
 import { getProducts } from "./services/productService";
+import Spinner from "./Spinner"
 
 export default function App() {
   const [size, setSize] = useState(undefined);
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getProducts("shoes")
-      .then((resp) => setProducts(resp))
-      .catch((e) => setError(e));
-    // async function fetchData() {
-    //   const data = await getProducts("shoes");
-    //   setProducts(data)
-    // }
-    // fetchData()
+    // getProducts("shoes")
+    //   .then((resp) => setProducts(resp))
+    //   .catch((e) => setError(e))
+    //   .finally(() => setLoading(false))
+    async function fetchData() {
+      try {
+        const data = await getProducts("shoes");
+        setProducts(data)
+      } catch (e) {
+        setError(e)
+      } finally{
+        setLoading(false)
+      }
+    }
+    fetchData()
   }, [])
 
   function renderProduct(p) {
@@ -36,6 +45,7 @@ export default function App() {
     products.filter((p) => p.skus.find((s) => s.size === Number(size)))
     : products;
 
+  if (loading) return <Spinner />
   if (error) throw error;
 
   return (
