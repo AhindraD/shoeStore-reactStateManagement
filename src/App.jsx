@@ -17,8 +17,7 @@ function App() {
 
           {/* Placeholder url to get category from url */}
           <Route path='/:category' element={<Products />}></Route>
-
-          <Route path='/:category/id' element={<Detail />}></Route>
+          <Route path='/:category/:id' element={<Detail />}></Route>
           <Route path='/cart' element={<Cart />}></Route>
         </Routes>
       </main>

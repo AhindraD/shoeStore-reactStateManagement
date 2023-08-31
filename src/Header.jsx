@@ -1,5 +1,10 @@
+import { act } from "@testing-library/react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+const activeStyle = {
+  color: "cyan"
+}
 
 export default function Header() {
   return (
@@ -14,15 +19,16 @@ export default function Header() {
           </li>
 
           <li>
-            <Link to={"/shoes"}>
+            {/* Same as link but also shows active state */}
+            <NavLink activeStyle={activeStyle} to={"/shoes"}>
               SHOES
-            </Link>
+            </NavLink>
           </li>
 
           <li>
-            <Link to={"/cart"}>
+            <NavLink activeStyle={activeStyle} to={"/cart"}>
               CART
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
