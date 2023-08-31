@@ -13,7 +13,13 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route path='/' element={<Products />}></Route>
+          <Route path='/' element={<h1>Welcome to Fitness</h1>}></Route>
+
+          {/* Placeholder url to get category from url */}
+          <Route path='/:category' element={<Products />}></Route>
+          
+          <Route path='/detail' element={<Detail />}></Route>
+          <Route path='/cart' element={<Cart />}></Route>
         </Routes>
       </main>
       <Footer />
